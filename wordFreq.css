@@ -1,0 +1,30 @@
+h1{
+    text-align: center;
+}
+
+input{
+    height: 200px; 
+    width: 400px;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table, tr, td{
+    border: 1px solid black;
+
+}
+
+.output{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 10%;
+}
+
+table{
+    width: 350px;
+}
