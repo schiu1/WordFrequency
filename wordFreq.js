@@ -2,7 +2,8 @@ document.getElementById('calcButton').addEventListener('click', WordFrequency);
 
 function WordFrequency(){
     const text = document.getElementById('inputText').value.toLowerCase();
-    const words = text.split(" ");
+    const noPunc = text.replace(/[\,\.\!\?]/g,""); //regex means any characters that are , . ! or ?
+    const words = noPunc.split(" ");
     const wordMap = new Map();
     for(const word of words){
         let keys = [...wordMap.keys()];
@@ -14,4 +15,6 @@ function WordFrequency(){
         }
     }
     console.log(wordMap);
+
+
 }
