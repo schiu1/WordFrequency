@@ -14,7 +14,10 @@ function WordFrequency(){
             wordMap.set(word, 1);
         }
     }
-    console.log(wordMap);
-
-
+    //sort normally sorts in ascending order, but since I want descending order, 
+    //i flip the comparison func to produce the opposite result every time
+    //if result is greater than 0, then right is sorted before left
+    //if result is less than 0, then right is sorted after left
+    const final = [...wordMap].sort((a, b) => b[1] - a[1]); 
+    console.log(final);
 }
