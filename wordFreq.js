@@ -16,8 +16,38 @@ function WordFrequency(){
     }
     //sort normally sorts in ascending order, but since I want descending order, 
     //i flip the comparison func to produce the opposite result every time
+
+    //from what I saw, positive means flip it since it wants to be negative(ascending order),
+    //but we can manipulate it to do the reverse thinking it'll keep sorting in ascending order
+    //basically every positive would instead be negative and vice versa
+    
     //if result is greater than 0, then right is sorted before left
     //if result is less than 0, then right is sorted after left
     const final = [...wordMap].sort((a, b) => b[1] - a[1]); 
     console.log(final);
+
+    const table = document.getElementById("tableOutput");
+    while(table.hasChildNodes()){
+        table.removeChild(table.firstChild);
+    }
+    const titleRow = document.createElement("tr");
+    const titleWord = document.createElement("td");
+    const titleCount = document.createElement("td");
+    titleWord.innerHTML = "Word"; 
+    titleCount.innerHTML = "Count";
+    titleRow.appendChild(titleWord);
+    titleRow.appendChild(titleCount);
+    table.appendChild(titleRow);
+    
+    for(const data of final){
+        const newRow = document.createElement("tr");
+        const newWord = document.createElement("td");
+        const newCount = document.createElement("td");
+        newWord.innerHTML = data[0]; 
+        newCount.innerHTML = data[1];
+        newRow.appendChild(newWord);
+        newRow.appendChild(newCount);
+        table.appendChild(newRow);
+    }
+
 }
