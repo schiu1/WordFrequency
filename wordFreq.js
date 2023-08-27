@@ -40,6 +40,9 @@ function WordFrequency(){
     table.appendChild(titleRow);
     
     for(const data of final){
+        if (data[0] == ''){
+            continue;
+        }
         const newRow = document.createElement("tr");
         const newWord = document.createElement("td");
         const newCount = document.createElement("td");
