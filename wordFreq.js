@@ -1,5 +1,14 @@
 document.getElementById('calcButton').addEventListener('click', WordFrequency);
 
+function resetCanvas(){
+    const chartElem = document.getElementById('chartOutput')
+    chartElem.remove();
+    const newChart = document.createElement("canvas");
+    newChart.id = "chartOutput";
+    newChart.style = "width: 100%; max-width: 700px;";
+    document.getElementById('output').appendChild(newChart);
+}
+
 function WordFrequency(){
     const text = document.getElementById('inputText').value.toLowerCase();
     const noPunc = text.replace(/[\,\.\!\?]/g,""); //regex means any characters that are , . ! or ?
@@ -26,11 +35,16 @@ function WordFrequency(){
     const final = [...wordMap].sort((a, b) => b[1] - a[1]); 
     console.log(final);
 
-    //table
+    //remove old table
     const table = document.getElementById("tableOutput");
     while(table.hasChildNodes()){
         table.removeChild(table.firstChild);
     }
+
+    //remove old chart
+    resetCanvas();
+    
+    //table setup
     const titleRow = document.createElement("tr");
     const titleWord = document.createElement("td");
     const titleCount = document.createElement("td");
@@ -40,9 +54,12 @@ function WordFrequency(){
     titleRow.appendChild(titleCount);
     table.appendChild(titleRow);
     
-    //chart
+    //chart setup
     const xValues = [];
     const yValues = [];
+    const barColors = [];
+    const colorOptions = ["red", "green", "blue", "orange", "brown"];
+    let currColor = 0;
     
     for(const data of final){
         if (data[0] == ''){
@@ -59,13 +76,20 @@ function WordFrequency(){
 
         xValues.push(data[0]);
         yValues.push(data[1]);
+        barColors.push(colorOptions[currColor]);
+        if(currColor + 1 >= colorOptions.length){
+            currColor = 0;
+        }
+        else{
+            currColor += 1;
+        }
     }
     
     new Chart("chartOutput", {
         type: "pie",
         data: {
             labels: xValues,
-            datasets: [{data: yValues}]
+            datasets: [{backgroundColor: barColors, data: yValues}]
         }
     });
 }
