@@ -26,6 +26,7 @@ function WordFrequency(){
     const final = [...wordMap].sort((a, b) => b[1] - a[1]); 
     console.log(final);
 
+    //table
     const table = document.getElementById("tableOutput");
     while(table.hasChildNodes()){
         table.removeChild(table.firstChild);
@@ -39,6 +40,10 @@ function WordFrequency(){
     titleRow.appendChild(titleCount);
     table.appendChild(titleRow);
     
+    //chart
+    const xValues = [];
+    const yValues = [];
+    
     for(const data of final){
         if (data[0] == ''){
             continue;
@@ -51,6 +56,16 @@ function WordFrequency(){
         newRow.appendChild(newWord);
         newRow.appendChild(newCount);
         table.appendChild(newRow);
-    }
 
+        xValues.push(data[0]);
+        yValues.push(data[1]);
+    }
+    
+    new Chart("chartOutput", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{data: yValues}]
+        }
+    });
 }
