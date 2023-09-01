@@ -61,30 +61,50 @@ function WordFrequency(){
     const colorOptions = ["red", "green", "blue", "orange", "brown"];
     let currColor = 0;
     
+
+    //loop to enter data
+    let graphEntries = 0;
+    let othersCount = 0;
     for(const data of final){
         if (data[0] == ''){
             continue;
         }
-        const newRow = document.createElement("tr");
-        const newWord = document.createElement("td");
-        const newCount = document.createElement("td");
-        newWord.innerHTML = data[0]; 
-        newCount.innerHTML = data[1];
-        newRow.appendChild(newWord);
-        newRow.appendChild(newCount);
-        table.appendChild(newRow);
 
-        xValues.push(data[0]);
-        yValues.push(data[1]);
-        barColors.push(colorOptions[currColor]);
-        if(currColor + 1 >= colorOptions.length){
-            currColor = 0;
+        if(graphEntries != 4){
+            const newRow = document.createElement("tr");
+            const newWord = document.createElement("td");
+            const newCount = document.createElement("td");
+            newWord.innerHTML = data[0]; 
+            newCount.innerHTML = data[1];
+            newRow.appendChild(newWord);
+            newRow.appendChild(newCount);
+            table.appendChild(newRow);
+    
+            xValues.push(data[0]);
+            yValues.push(data[1]);
+            barColors.push(colorOptions[currColor]);
+            currColor++;
+            graphEntries++;
         }
         else{
-            currColor += 1;
+            othersCount += data[1];
         }
     }
+
+    //add the others row to table and chart
+    const newOthersRow = document.createElement("tr");
+    const newOthersWord = document.createElement("td");
+    const newOthersCount = document.createElement("td");
+    newOthersWord.innerHTML = "other";
+    newOthersCount.innerHTML = othersCount;
+    newOthersRow.appendChild(newOthersWord);
+    newOthersRow.appendChild(newOthersCount);
+    table.appendChild(newOthersRow);
+    xValues.push("other");
+    yValues.push(othersCount);
+    barColors.push(colorOptions[currColor]);
     
+    //display chart
     new Chart("chartOutput", {
         type: "pie",
         data: {
