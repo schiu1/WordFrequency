@@ -70,15 +70,16 @@ function WordFrequency(){
             continue;
         }
 
+        const newRow = document.createElement("tr");
+        const newWord = document.createElement("td");
+        const newCount = document.createElement("td");
+        newWord.innerHTML = data[0]; 
+        newCount.innerHTML = data[1];
+        newRow.appendChild(newWord);
+        newRow.appendChild(newCount);
+        table.appendChild(newRow);
+
         if(graphEntries != 4){
-            const newRow = document.createElement("tr");
-            const newWord = document.createElement("td");
-            const newCount = document.createElement("td");
-            newWord.innerHTML = data[0]; 
-            newCount.innerHTML = data[1];
-            newRow.appendChild(newWord);
-            newRow.appendChild(newCount);
-            table.appendChild(newRow);
     
             xValues.push(data[0]);
             yValues.push(data[1]);
@@ -92,14 +93,7 @@ function WordFrequency(){
     }
 
     //add the others row to table and chart
-    const newOthersRow = document.createElement("tr");
-    const newOthersWord = document.createElement("td");
-    const newOthersCount = document.createElement("td");
-    newOthersWord.innerHTML = "other";
-    newOthersCount.innerHTML = othersCount;
-    newOthersRow.appendChild(newOthersWord);
-    newOthersRow.appendChild(newOthersCount);
-    table.appendChild(newOthersRow);
+    
     xValues.push("other");
     yValues.push(othersCount);
     barColors.push(colorOptions[currColor]);
