@@ -92,8 +92,7 @@ function WordFrequency(){
         }
     }
 
-    //add the others row to table and chart
-    
+    //add the others chart 
     xValues.push("other");
     yValues.push(othersCount);
     barColors.push(colorOptions[currColor]);
