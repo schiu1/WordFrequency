@@ -50,6 +50,7 @@ function WordFrequency(){
     const titleCount = document.createElement("td");
     titleWord.innerHTML = "Word"; 
     titleCount.innerHTML = "Count";
+    titleRow.classList.add('rowType2');
     titleRow.appendChild(titleWord);
     titleRow.appendChild(titleCount);
     table.appendChild(titleRow);
@@ -61,6 +62,8 @@ function WordFrequency(){
     const colorOptions = ["red", "green", "blue", "orange", "brown"];
     let currColor = 0;
     
+
+    let currRowType = 1;
 
     //loop to enter data
     let graphEntries = 0;
@@ -75,6 +78,9 @@ function WordFrequency(){
         const newCount = document.createElement("td");
         newWord.innerHTML = data[0]; 
         newCount.innerHTML = data[1];
+        newRow.classList.add('rowType' + currRowType);
+        if(currRowType == 1){ currRowType++; }
+        else{ currRowType--; }
         newRow.appendChild(newWord);
         newRow.appendChild(newCount);
         table.appendChild(newRow);
