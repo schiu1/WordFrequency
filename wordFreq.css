@@ -30,7 +30,7 @@ table, tr, td{
     display: flex;
     align-items: center;
     margin-top: 50px;
-    margin-left: 10%;
+    margin-left: 25%;
 }
 
 table{
@@ -45,14 +45,24 @@ table{
 }
 
 .rowType1{
-    background-color: darksalmon;
+    background-color: peachpuff;
 }
 
 .rowType2{
-    background-color:peachpuff
+    background-color: darksalmon;
 }
 
 .chartOutput{
     width: 100%; 
-    max-width: 700px;
+    max-width: 700px;;
+}
+
+.calcButton{
+    background-color: darksalmon;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+    font-size: larger;
+    
 }
