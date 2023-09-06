@@ -6,6 +6,10 @@ h1{
     text-align: center;
 }
 
+p{
+    text-align: center;
+}
+
 input{
     height: 200px; 
     width: 400px;

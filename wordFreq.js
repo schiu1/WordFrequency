@@ -10,6 +10,10 @@ function resetCanvas(){
 }
 
 function WordFrequency(){
+    if (document.getElementById('inputText').value == ""){
+        alert("Missing Text");
+        return;
+    }
     const text = document.getElementById('inputText').value.toLowerCase();
     const noPunc = text.replace(/[\,\.\!\?]/g,""); //regex means any characters that are , . ! or ?
     const words = noPunc.split(" ");
